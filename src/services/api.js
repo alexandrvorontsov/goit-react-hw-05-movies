@@ -37,11 +37,12 @@ export const fetchFindFilms = async (query, page) => {
   return response.data;
 };
 
+const defaultImg =
+  'https://ireland.apollo.olxcdn.com/v1/files/0iq0gb9ppip8-UA/image;s=1000x700';
+
 export function createImg(path) {
   if (path) {
-    return path
-      ? `https://image.tmdb.org/t/p/w500${path}`
-      : `https://www.themoviedb.org/t/p/w138_and_h175_face/ohAOsD8E4tu35PI2buzZORpn9Ef.jpg`;
+    return path ? `https://image.tmdb.org/t/p/w500${path}` : defaultImg;
   }
   return;
 }

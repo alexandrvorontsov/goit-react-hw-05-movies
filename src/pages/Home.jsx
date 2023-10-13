@@ -1,7 +1,7 @@
 import { Suspense } from 'react';
 import { Link, Outlet } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { fetchTrendingFilms } from 'services/api';
+import { fetchTrendingFilms, createImg } from 'services/api';
 
 const HomePage = () => {
   const [trendingFilms, setTrendingFilms] = useState([]);
@@ -21,6 +21,11 @@ const HomePage = () => {
         {trendingFilms.map(film => {
           return (
             <li key={film.id}>
+              {/* <img
+                src={createImg(film.poster_path)}
+                alt="avatar"
+                width="250px"
+              /> */}
               <Link to={`/movies/${film.id}`}>{film.original_title}</Link>
             </li>
           );

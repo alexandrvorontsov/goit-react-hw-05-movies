@@ -1,6 +1,9 @@
 import { Wrapper, Input, Icon } from './SearchBox.styled';
 
 export const SearchBox = ({ value, onChange }) => {
+  // const handleSubmit = value => {
+  //   setSearchParams({ query: value });
+  // };
   return (
     <Wrapper>
       <Icon />

@@ -2,7 +2,7 @@ import { fetcActors, createImg } from '../services/api';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
- const Cast=()=> {
+const Cast = () => {
   const { movieId } = useParams();
   const [actors, setActors] = useState();
 
@@ -30,6 +30,6 @@ import { useParams } from 'react-router-dom';
       ))}
     </ul>
   );
-}
+};
 
 export default Cast;

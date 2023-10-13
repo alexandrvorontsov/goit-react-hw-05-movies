@@ -17,7 +17,7 @@ const MovieDetails = () => {
   // import { useParams } from 'react-router-dom';
   // const DogDetails = ()=> {
   //   const {dogId} = useParams();
-  // useEffect(()=>{HTTP запрос на сервер записіваем в стейт и рендерим},[])
+  // useEffect(()=>{HTTP запрос на сервер записиваем в стейт и рендерим},[])
 
   //   console.log(params);
   //   return <>DogDetails: {dogId}</>
@@ -26,6 +26,9 @@ const MovieDetails = () => {
   useEffect(() => {
     async function getDetails() {
       const details = await fetchFilmDetails(movieId);
+
+      console.log(details);
+
       setFilm(details);
     }
     getDetails();
@@ -50,7 +53,7 @@ const MovieDetails = () => {
         ))}
       </p>
       <div>
-        <p>Additional information</p>
+        <h4>Additional information</h4>
         <ul>
           <li>
             <Link
@@ -69,10 +72,11 @@ const MovieDetails = () => {
             </Link>
           </li>
         </ul>
-      </div>
-      <Suspense fallback={<p>Loading...</p>}>
         <Outlet />
-      </Suspense>
+      </div>
+      {/* <Suspense fallback={<p>Loading...</p>}>
+        <Outlet />
+      </Suspense> */}
     </>
   );
 };
