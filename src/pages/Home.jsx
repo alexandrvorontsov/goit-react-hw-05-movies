@@ -1,7 +1,7 @@
 import { Suspense } from 'react';
 import { Link, Outlet } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { fetchTrendingFilms, createImg } from 'services/api';
+import { fetchTrendingFilms } from 'services/api';
 
 const HomePage = () => {
   const [trendingFilms, setTrendingFilms] = useState([]);
