@@ -12,8 +12,6 @@ const MovieDetails = () => {
   const location = useLocation();
   // const backLinkHref = location.state?.from ?? '/';
   const backLinkLocationRef = useRef(location.state?.from ?? '/');
-  // console.log(location, 'location');
-  // console.log(backLinkLocationRef, 'backLinkLocationRef');
 
   // /dogs/:dogId
   // http://lcalhost:3000/dogs/dogs-3
