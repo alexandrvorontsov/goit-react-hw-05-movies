@@ -1,7 +1,7 @@
 import { useParams, useLocation } from 'react-router-dom';
 import { Link, Outlet } from 'react-router-dom';
-import { BackLink } from '../components/BackLink';
-import { useState, useEffect } from 'react';
+import { BackLink } from '../components/BackLink/BackLink';
+import { useState, useEffect, useRef } from 'react';
 import { Suspense } from 'react';
 import { fetchFilmDetails } from 'services/api';
 import { createImg } from 'services/api';
@@ -10,7 +10,10 @@ const MovieDetails = () => {
   const [film, setFilm] = useState({});
   const { movieId } = useParams();
   const location = useLocation();
-  const backLinkHref = location.state?.from ?? '/';
+  // const backLinkHref = location.state?.from ?? '/';
+  const backLinkLocationRef = useRef(location.state?.from ?? '/');
+  // console.log(location, 'location');
+  // console.log(backLinkLocationRef, 'backLinkLocationRef');
 
   // /dogs/:dogId
   // http://lcalhost:3000/dogs/dogs-3
@@ -26,9 +29,6 @@ const MovieDetails = () => {
   useEffect(() => {
     async function getDetails() {
       const details = await fetchFilmDetails(movieId);
-
-      console.log(details);
-
       setFilm(details);
     }
     getDetails();
@@ -38,8 +38,8 @@ const MovieDetails = () => {
 
   return (
     <>
-      <BackLink to={backLinkHref}>Go back</BackLink>
-      <img src={createImg(poster_path)} alt="Film avatar" width="300px" />
+      <BackLink to={backLinkLocationRef.current}>Go back</BackLink>
+      <img src={createImg(poster_path)} alt="Film avatar" width="200px" />
       <h2>
         {film.title} ({release_date?.slice(0, 4)})
       </h2>
@@ -57,7 +57,7 @@ const MovieDetails = () => {
         <ul>
           <li>
             <Link
-              state={{ from: location?.state?.from }}
+              state={backLinkLocationRef.current}
               to={`/movies/${movieId}/cast`}
             >
               Cast
@@ -65,18 +65,17 @@ const MovieDetails = () => {
           </li>
           <li>
             <Link
-              state={{ from: location?.state?.from }}
+              state={backLinkLocationRef.current}
               to={`/movies/${movieId}/reviews`}
             >
               Reviews
             </Link>
           </li>
         </ul>
-        <Outlet />
       </div>
-      {/* <Suspense fallback={<p>Loading...</p>}>
+      <Suspense fallback={<p>Loading...</p>}>
         <Outlet />
-      </Suspense> */}
+      </Suspense>
     </>
   );
 };

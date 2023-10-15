@@ -27,22 +27,20 @@ export const fetchReviews = async movie_id => {
   return response.data.results;
 };
 
-export const fetchFindFilms = async (query, page) => {
+export const fetchFindFilms = async query => {
   const response = await api.get(`/search/movie`, {
     params: {
       query,
-      page,
     },
   });
   return response.data;
 };
 
-const defaultImg =
-  'https://ireland.apollo.olxcdn.com/v1/files/0iq0gb9ppip8-UA/image;s=1000x700';
+const defaultImg = `https://ireland.apollo.olxcdn.com/v1/files/0iq0gb9ppip8-UA/image;s=300x200`;
 
 export function createImg(path) {
   if (path) {
-    return path ? `https://image.tmdb.org/t/p/w500${path}` : defaultImg;
+    return `https://image.tmdb.org/t/p/w500${path}`;
   }
-  return;
+  return defaultImg;
 }

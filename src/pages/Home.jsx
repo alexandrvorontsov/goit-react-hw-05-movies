@@ -21,11 +21,6 @@ const HomePage = () => {
         {trendingFilms.map(film => {
           return (
             <li key={film.id}>
-              {/* <img
-                src={createImg(film.poster_path)}
-                alt="avatar"
-                width="250px"
-              /> */}
               <Link to={`/movies/${film.id}`}>{film.original_title}</Link>
             </li>
           );

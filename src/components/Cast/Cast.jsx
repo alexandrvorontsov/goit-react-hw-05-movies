@@ -1,6 +1,7 @@
-import { fetcActors, createImg } from '../services/api';
+import { fetcActors, createImg } from '../../services/api';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { Container, Card, ProductName } from './Cast.styled';
 
 const Cast = () => {
   const { movieId } = useParams();
@@ -15,20 +16,20 @@ const Cast = () => {
   }, [movieId]);
 
   return (
-    <ul>
+    <Container>
       {actors?.map(actor => (
-        <li key={actor.id}>
+        <Card key={actor.id}>
           <img
             src={createImg(actor.profile_path)}
             alt="actor"
             width="200px"
             height="300px"
           />
-          <p>Name: {actor.original_name}</p>
-          <p>Character: {actor.character}</p>
-        </li>
+          <ProductName>Name: {actor.original_name}</ProductName>
+          <ProductName>Character: {actor.character}</ProductName>
+        </Card>
       ))}
-    </ul>
+    </Container>
   );
 };
 

@@ -1,5 +1,5 @@
 import { useLocation } from 'react-router-dom';
-import { BackLink } from '../components/BackLink';
+import { BackLink } from '../BackLink/BackLink';
 
 const NotFound = () => {
   const location = useLocation();
